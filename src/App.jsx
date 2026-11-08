@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Volume2, VolumeX, Sparkles, Languages, Heart, Menu, X } from "lucide-react";
 import "./App.css";
-import html2canvas from "html2canvas";
+
 
 const greetings = {
   English: { label: "English", headline: "Happy Diwali", sub: "May your life shine as bright as the diyas.", wish: "Wishing you and your family a Diwali filled with light, laughter, prosperity and endless happiness.", button: "Send warm wishes" },
@@ -220,6 +220,7 @@ const downloadGreetingCard = async () => {
   if (!cardRef.current) return;
 
   try {
+    const { default: html2canvas } = await import("html2canvas");
     const canvas = await html2canvas(cardRef.current, {
       scale: 2,
       backgroundColor: null,
